@@ -11,7 +11,6 @@ Window {
 
     MetronomePage {
         id: metronomePage
-        x: 0
-        y: 0
+        anchors.fill: parent
     }
 }
