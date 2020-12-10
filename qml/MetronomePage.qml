@@ -32,8 +32,3 @@ Item {
     }
 }
 
-/*##^##
-Designer {
-    D{i:0;formeditorColor:"#4c4e50";formeditorZoom:0.8999999761581421}
-}
-##^##*/
