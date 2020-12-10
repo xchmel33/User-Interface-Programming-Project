@@ -22,12 +22,10 @@ Item {
 
         MetronomeAnalogClassic {
             id: metronomeAnalogClassic
-            x: 0
-            y: 0
-            width: 480
-            height: 558
-            tempoName: "Adagio"
+            anchors.fill: parent
+
             tempo: 80
+            tempoName: "Adagio"
             running: false
             onTempoChange: updateTempo(newTempo)
         }
