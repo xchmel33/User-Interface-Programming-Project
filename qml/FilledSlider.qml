@@ -7,9 +7,10 @@ Item {
 
     property double minValue
     property double maxValue
-    property int value: handle.x / (slider.width - handle.width) * (maxValue - minValue) + minValue
     property color fillColor: "#444"
     property color handleColor: "#666"
+
+    signal valueChanged(int newValue)
 
     Rectangle {
         id: slider
@@ -40,6 +41,11 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             transformOrigin: Item.Right
 
+            onXChanged: {
+                let newValue = handle.x / (slider.width - handle.width) * (maxValue - minValue) + minValue
+                root.valueChanged(newValue)
+            }
+
             MouseArea {
                 anchors.fill: parent
                 transformOrigin: Item.Center
@@ -57,7 +63,7 @@ Item {
             drag.target: handle
             drag.axis: Drag.XAxis
             drag.minimumX: 0
-            drag.maximumX: slider.width - handle.width
+            drag.maximumX: slider.width - slider.border.width - handle.width
         }
     }
 }
