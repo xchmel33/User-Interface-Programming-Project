@@ -1,39 +1,44 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.11
 
 Item {
     id: tempoIndicators
 
-    property int tempo
-    property string tempoName
+    property int tempo: 0
+    property string tempoName: "Default"
+    property bool centered: false
 
-    width: column.width
-    height: column.height
+    width: 180
+    height: 60
 
-    Column {
+    ColumnLayout {
         id: column
-        width: 180
-        height: 60
+        width: parent.width
+        height: parent.height
         spacing: 8
 
         Text {
             id: tempoNumber
             text: tempoIndicators.tempo
-            anchors.left: parent.left
-            font.pixelSize: 28 * (tempoIndicators.height / 60)
+            font.pixelSize: 28 * (parent.height / 60)
+            horizontalAlignment: tempoIndicators.centered ? Text.AlignHCenter : Text.AlignLeft
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             fontSizeMode: Text.VerticalFit
-            maximumLineCount: 0
-            anchors.leftMargin: 16
+            maximumLineCount: 1
         }
 
         Text {
             id: tempoText
             text: tempoIndicators.tempoName
-            anchors.left: parent.left
-            font.pixelSize: 12 * (tempoIndicators.height / 60)
+            font.pixelSize: 12 * (parent.height / 60)
+            horizontalAlignment: tempoIndicators.centered ? Text.AlignHCenter : Text.AlignLeft
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             fontSizeMode: Text.VerticalFit
-            anchors.leftMargin: 16
-            maximumLineCount: 0
+            maximumLineCount: 1
         }
     }
 }
