@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import Qt.labs.settings 1.0
+import TempoLut 1.0
 
 Window {
     id: window
@@ -15,10 +16,19 @@ Window {
         anchors.fill: parent
     }
 
+    SideMenu {
+        id: sidemenu
+        width: window.width
+    }
+
     Settings {
         property alias x: window.x
         property alias y: window.y
         property alias width: window.width
         property alias height: window.height
+    }
+
+    LUT {
+        id: lut
     }
 }

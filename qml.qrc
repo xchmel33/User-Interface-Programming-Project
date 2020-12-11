@@ -17,5 +17,6 @@
         <file alias="needle_small.svg">qml/metronome-visualization/needle_small.svg</file>
         <file alias="pause.svg">qml/metronome-visualization/pause.svg</file>
         <file alias="play.svg">qml/metronome-visualization/play.svg</file>
+        <file>qml/components/sideMenuIcon.svg</file>
     </qresource>
 </RCC>

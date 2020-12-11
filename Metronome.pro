@@ -1,4 +1,10 @@
-QT += quick
+QT += \
+    quick \
+    svg \
+    xml
+
+QTPLUGIN += qsvg
+
 
 CONFIG += c++11
 
@@ -7,7 +13,8 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+        temponamelut.cpp
 
 RESOURCES += qml.qrc
 
@@ -37,6 +44,7 @@ DISTFILES += \
     qml/components/Diode.qml \
     qml/components/FilledSlider.qml \
     qml/components/PlayButton.qml \
+    qml/components/sideMenuIcon.svg \
     qml/components/TempoIndicators.qml \
     qml/metronome-visualization/MetronomeAnalogClassic.qml \
     qml/metronome-visualization/MetronomeAnalogModern.qml \
@@ -50,3 +58,6 @@ DISTFILES += \
     qml/metronome-visualization/play.svg \
     qml/needle_small.svg \
     qml/pages/MetronomePage.qml
+
+HEADERS += \
+    temponamelut.h
