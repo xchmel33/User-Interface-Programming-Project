@@ -31,6 +31,22 @@ DISTFILES += \
     qml/MetronomeAnalogModern.qml \
     qml/MetronomePage.qml \
     qml/MetronomeSimple.qml \
+    qml/MetronomeVisualization.qml \
     qml/PlayButton.qml \
     qml/TempoIndicators.qml \
-    qml/needle_small.svg
+    qml/components/Diode.qml \
+    qml/components/FilledSlider.qml \
+    qml/components/PlayButton.qml \
+    qml/components/TempoIndicators.qml \
+    qml/metronome-visualization/MetronomeAnalogClassic.qml \
+    qml/metronome-visualization/MetronomeAnalogModern.qml \
+    qml/metronome-visualization/MetronomeSimple.qml \
+    qml/metronome-visualization/MetronomeVisualization.qml \
+    qml/metronome-visualization/metronome_base.svg \
+    qml/metronome-visualization/metronome_base_larger.svg \
+    qml/metronome-visualization/needle.svg \
+    qml/metronome-visualization/needle_small.svg \
+    qml/metronome-visualization/pause.svg \
+    qml/metronome-visualization/play.svg \
+    qml/needle_small.svg \
+    qml/pages/MetronomePage.qml
