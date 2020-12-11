@@ -12,5 +12,6 @@
         <file alias="MetronomePage.qml">qml/MetronomePage.qml</file>
         <file alias="Diode.qml">qml/Diode.qml</file>
         <file alias="FilledSlider.qml">qml/FilledSlider.qml</file>
+        <file>qml/SideMenu.qml</file>
     </qresource>
 </RCC>

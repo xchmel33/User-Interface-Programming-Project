@@ -4,7 +4,7 @@ import QtQuick.Controls 2.15
 
 Window {
     id: window
-    width: 480
+    width: 700
     height: 560
     visible: true
     title: qsTr("FIT Metronome")
