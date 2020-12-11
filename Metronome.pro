@@ -14,7 +14,7 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        temponamelut.cpp
+        misc/temponamelut.cpp
 
 RESOURCES += qml.qrc
 
@@ -33,6 +33,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    misc/donatePage.html \
     qml/Diode.qml \
     qml/FilledSlider.qml \
     qml/MetronomeAnalogModern.qml \
@@ -60,4 +61,5 @@ DISTFILES += \
     qml/pages/MetronomePage.qml
 
 HEADERS += \
-    temponamelut.h
+    misc/temponamelut.h \
+    misc/webLauncher.h

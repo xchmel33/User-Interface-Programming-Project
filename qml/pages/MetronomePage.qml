@@ -16,6 +16,14 @@ Item {
         metronomePage.tempo = newTempo;
     }
 
+    function setView(viewNo) {
+        let newViewModel = itemModel.get(viewNo)
+        let currViewModel = stackView.currentItem
+        if(newViewModel !== currViewModel) {
+            stackView.replace(newViewModel)
+        }
+    }
+
     ObjectModel {
         id: itemModel
 

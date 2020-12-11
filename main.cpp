@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "temponamelut.h"
+#include "misc/temponamelut.h"
+#include "misc/webLauncher.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,6 +13,7 @@ int main(int argc, char *argv[])
     app.setApplicationName("FIT Metronom");
 
     qmlRegisterType<tempoNameLUT>("TempoLut", 1, 0, "LUT");
+    qmlRegisterType<webLauncher>("WebLauncher", 1, 0, "DonationPage");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
