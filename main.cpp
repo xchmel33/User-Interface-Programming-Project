@@ -6,6 +6,9 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
+    app.setOrganizationName("Studenti VUT FIT");
+    app.setOrganizationDomain("xchmelo33.org");
+    app.setApplicationName("FIT Metronom");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
