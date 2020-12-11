@@ -2,19 +2,10 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.11
 import QtQuick.Controls 2.15
 
-Item {
+MetronomeVisualization {
     id: metronomeSimple
     width: 480
     height: 680
-
-    property int tempo
-    property string tempoName
-    property bool running
-
-    readonly property int minTempo: 12
-    readonly property int maxTempo: 240
-
-    signal tempoChange(int newTempo);
 
     ColumnLayout {
         id: root
@@ -182,6 +173,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:6}
+    D{i:0;formeditorZoom:0.75}
 }
 ##^##*/

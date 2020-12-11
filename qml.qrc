@@ -1,17 +1,21 @@
 <RCC>
     <qresource prefix="/">
         <file alias="main.qml">qml/main.qml</file>
-        <file alias="MetronomeAnalogClassic.qml">qml/MetronomeAnalogClassic.qml</file>
-        <file alias="MetronomeSimple.qml">qml/MetronomeSimple.qml</file>
-        <file alias="needle.svg">qml/needle.svg</file>
-        <file alias="play.svg">qml/play.svg</file>
-        <file alias="pause.svg">qml/pause.svg</file>
-        <file alias="metronome_base.svg">qml/metronome_base.svg</file>
-        <file alias="PlayButton.qml">qml/PlayButton.qml</file>
-        <file alias="TempoIndicators.qml">qml/TempoIndicators.qml</file>
-        <file alias="MetronomePage.qml">qml/MetronomePage.qml</file>
-        <file alias="Diode.qml">qml/Diode.qml</file>
-        <file alias="FilledSlider.qml">qml/FilledSlider.qml</file>
-        <file>qml/SideMenu.qml</file>
+        <file alias="SideMenu.qml">qml/SideMenu.qml</file>
+        <file alias="MetronomePage.qml">qml/pages/MetronomePage.qml</file>
+        <file alias="Diode.qml">qml/components/Diode.qml</file>
+        <file alias="FilledSlider.qml">qml/components/FilledSlider.qml</file>
+        <file alias="PlayButton.qml">qml/components/PlayButton.qml</file>
+        <file alias="TempoIndicators.qml">qml/components/TempoIndicators.qml</file>
+        <file alias="MetronomeAnalogClassic.qml">qml/metronome-visualization/MetronomeAnalogClassic.qml</file>
+        <file alias="MetronomeAnalogModern.qml">qml/metronome-visualization/MetronomeAnalogModern.qml</file>
+        <file alias="MetronomeSimple.qml">qml/metronome-visualization/MetronomeSimple.qml</file>
+        <file alias="MetronomeVisualization.qml">qml/metronome-visualization/MetronomeVisualization.qml</file>
+        <file alias="metronome_base.svg">qml/metronome-visualization/metronome_base.svg</file>
+        <file alias="metronome_base_larger.svg">qml/metronome-visualization/metronome_base_larger.svg</file>
+        <file alias="needle.svg">qml/metronome-visualization/needle.svg</file>
+        <file alias="needle_small.svg">qml/metronome-visualization/needle_small.svg</file>
+        <file alias="pause.svg">qml/metronome-visualization/pause.svg</file>
+        <file alias="play.svg">qml/metronome-visualization/play.svg</file>
     </qresource>
 </RCC>

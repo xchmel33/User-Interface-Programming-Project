@@ -2,20 +2,11 @@ import QtQuick 2.0
 import QtQuick.Controls 2.15
 import QtQml.Models 2.1
 
-Item {
+MetronomeVisualization {
     id: metronomeAnalogClassic
     width: 480
     height: 680
     state: "idle"
-
-    property int tempo
-    property string tempoName
-    property bool running
-
-    readonly property int minTempo: 12
-    readonly property int maxTempo: 240
-
-    signal tempoChange(int newTempo);
 
     QtObject {
         id: internal
