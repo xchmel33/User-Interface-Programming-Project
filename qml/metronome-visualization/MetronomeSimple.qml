@@ -70,6 +70,7 @@ MetronomeVisualization {
                 fillColor: "#76ccfc"
                 handleColor: "#24a5ec"
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                enabled: !metronomeSimple.running
                 minValue: metronomeSimple.minTempo
                 maxValue: metronomeSimple.maxTempo
                 value: metronomeSimple.tempo
