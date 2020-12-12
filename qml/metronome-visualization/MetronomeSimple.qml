@@ -12,8 +12,9 @@ MetronomeVisualization {
     ColumnLayout {
         id: root
         anchors.fill: parent
+        anchors.leftMargin: 16
         anchors.bottomMargin: 16
-        anchors.rightMargin: 0
+        anchors.rightMargin: 16
         anchors.topMargin: 16
         spacing: 32
 
