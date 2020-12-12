@@ -63,90 +63,17 @@ MetronomeVisualization {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             spacing: 16
 
-            FilledSlider {
-                id: filledSlider
-                height: 55
+            TempoControllers {
+                id: tempoControllers
+                height: 200
                 fillColor: "#76ccfc"
                 handleColor: "#24a5ec"
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 minValue: metronomeSimple.minTempo
                 maxValue: metronomeSimple.maxTempo
-                onValueChanged: {
+                value: metronomeSimple.tempo
+                onValueChange: {
                     metronomeSimple.tempoChange(newValue);
-                }
-            }
-
-            RowLayout {
-                id: rowLayout
-                width: 100
-                height: 100
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                spacing: 64
-
-                Rectangle {
-                    id: minusButton
-                    height: parent.height
-                    width: this.height
-                    radius: this.width / 2
-                    border.width: 2
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                    Layout.fillHeight: true
-                    Layout.fillWidth: false
-                    color: "#ffffff"
-
-                    Rectangle {
-                        id: minusSign
-                        width: parent.width / 3
-                        height: this.width / 5
-                        color: "#000"
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            metronomeSimple.tempoChange(metronomeSimple.tempo - 1)
-                        }
-                    }
-                }
-
-                Rectangle {
-                    id: plusButton
-                    height: parent.height
-                    width: this.height
-                    radius: this.width / 2
-                    border.width: 2
-                    Layout.fillHeight: true
-                    Layout.fillWidth: false
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                    color: "#ffffff"
-
-                    Rectangle {
-                        id: plusSign1
-                        width: parent.width / 3
-                        height: this.width / 5
-                        color: "#000"
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
-                    Rectangle {
-                        id: plusSign2
-                        width: this.height / 5
-                        height: parent.height / 3
-                        color: "#000"
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            metronomeSimple.tempoChange(metronomeSimple.tempo + 1)
-                        }
-                    }
                 }
             }
 
