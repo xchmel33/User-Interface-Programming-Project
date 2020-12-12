@@ -10,7 +10,6 @@ MetronomeVisualization {
 
     QtObject {
         id: internal
-        property int swingDuration: 60000 / tempo
         property int widthScale: metronomeAnalogClassic.width / 480
         property int heightScale: metronomeAnalogClassic.height / 680
     }
@@ -154,7 +153,7 @@ MetronomeVisualization {
                 target: needle;
                 alwaysRunToEnd: false
                 direction: RotationAnimation.Clockwise;
-                duration: internal.swingDuration / 2;
+                duration: metronomeAnalogClassic.tempoMs;
                 easing.type: Easing.InOutQuad
             }
         },
@@ -165,7 +164,7 @@ MetronomeVisualization {
                 target: needle;
                 alwaysRunToEnd: false
                 direction: RotationAnimation.Counterclockwise;
-                duration: internal.swingDuration;
+                duration: metronomeAnalogClassic.tempoMs;
                 easing.type: Easing.InOutQuad
             }
         },
@@ -176,7 +175,7 @@ MetronomeVisualization {
                 target: needle;
                 alwaysRunToEnd: false
                 direction: RotationAnimation.Clockwise;
-                duration: internal.swingDuration;
+                duration: metronomeAnalogClassic.tempoMs;
                 easing.type: Easing.InOutQuad
             }
         },
@@ -186,8 +185,8 @@ MetronomeVisualization {
             RotationAnimation {
                 target: needle;
                 alwaysRunToEnd: false
-                direction: RotationAnimation.Counterclockwise;
-                duration: internal.swingDuration;
+                direction: RotationAnimation.Clockwise;
+                duration: 500;
                 easing.type: Easing.InOutQuad
             }
         },
@@ -197,8 +196,8 @@ MetronomeVisualization {
             RotationAnimation {
                 target: needle;
                 alwaysRunToEnd: false
-                direction: RotationAnimation.Clockwise;
-                duration: internal.swingDuration;
+                direction: RotationAnimation.Counterclockwise;
+                duration: 500;
                 easing.type: Easing.InOutQuad
             }
         }
