@@ -1,1 +1,59 @@
-<h1>moni plox</h1>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Metronome Donate Page</title>
+    </head>
+
+    <div id="welcome-group">
+        <h2 class="center">VUT FIT Brno</h2>
+        <h1 class="center">Metronome</h1>
+        <p id="info" class="center">
+            This is simple webpage created for our Metronome project 
+        </p>
+    </div>
+
+    <div id="donation-form">
+        <form action="/storage/" method="post">
+            {% csrf_token %}
+            <h2 class="">Want to support our project?</h2>
+            <label for="email">Your email:</label>
+            <input name="email" type="text" placeholder="example@example.com">
+            <label for="displayName">Your name:</label>
+            <input name="displayName" type="text" placeholder="John">
+            <label for="donation">Ammount you wish to donate (Czk):</label>
+            <input name="donation" type="number" placeholder="20">
+
+            <button id="submitBtn" type="submit" onclick="refreshData()">Donate!</button>
+        </form>
+    </div>
+
+    <div id="donation-list">
+
+    </div>
+</html>
+
+<script type="text/javascript">
+    function loadData() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(xhttp.responseText);
+
+                for(i = 0; i < data.length; i++) {
+                    const row = "<p><b>" + data[i].displayName + "</b> donated " + data[i].sum + "Czk! Thank you</p>";
+                    document.getElementById("donation-list").innerHTML += row;
+                }
+            }
+        }
+        xhttp.open("GET", "{% url 'storage' %}", true);
+        xhttp.send();
+    }
+
+    funtion refreshData() {
+        
+        
+        loadData();
+    }
+
+    window.onload = loadData();
+</script>
