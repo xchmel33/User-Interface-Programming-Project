@@ -7,6 +7,7 @@ ColumnLayout {
     height: 300
     spacing: 32
 
+    property bool enabled: true
     property double minValue
     property double maxValue
     property double value
@@ -57,7 +58,7 @@ ColumnLayout {
                 id: handleMouseArea
                 anchors.fill: parent
                 transformOrigin: Item.Center
-                acceptedButtons: Qt.LeftButton
+                enabled: root.enabled
                 drag.target: parent
                 drag.axis: Drag.XAxis
                 drag.minimumX: 0
@@ -70,6 +71,7 @@ ColumnLayout {
         MouseArea {
             anchors.fill: parent
             anchors.bottomMargin: 0
+            enabled: root.enabled
             drag.target: handle
             drag.axis: Drag.XAxis
             drag.minimumX: 0
@@ -117,6 +119,7 @@ ColumnLayout {
 
                 MouseArea {
                     anchors.fill: parent
+                    enabled: root.enabled
                     onClicked: {
                         let newValue = root.value - 1;
                         root.valueChange(newValue);
@@ -166,6 +169,7 @@ ColumnLayout {
 
                 MouseArea {
                     anchors.fill: parent
+                    enabled: root.enabled
                     onClicked: {
                         let newValue = root.value + 1;
                         root.valueChange(newValue);
