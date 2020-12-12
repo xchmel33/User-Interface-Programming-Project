@@ -32,13 +32,22 @@ Item {
             MouseArea {
                 id: menuButtonArea
                 anchors.fill: parent
-                onClicked: sideMenuIcon.mirror = !sideMenuIcon.mirror
+                onClicked: function flipIcon()
+                {
+                    if(sideMenuIcon.mirror) {
+                        sideMenuIcon.x += 10
+                    } else {
+                        sideMenuIcon.x -= 10
+                    }
+
+                    sideMenuIcon.mirror = !sideMenuIcon.mirror
+                }
 
                 Image {
                     id: sideMenuIcon
                     x: 0
                     y: 10
-                    width: 21
+                    width: 20
                     height: 31
                     source: "components/sideMenuIcon.svg"
                     mirror: true
