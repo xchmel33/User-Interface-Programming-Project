@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import TempoLUT 1.0
 
 Item {
     id: metronomeVisualization
@@ -19,7 +20,10 @@ Item {
         target: metronomeVisualization
 
         function onTempoChange(newTempo) {
-            metronomeVisualization.tempo = newTempo;
+            if (newTempo >= metronomeVisualization.minTempo && newTempo <= metronomeVisualization.maxTempo) {
+                metronomeVisualization.tempo = newTempo;
+                metronomeVisualization.tempoName = tempoLUT.getName(newTempo);
+            }
         }
 
         function onRunningChange() {
@@ -35,6 +39,10 @@ Item {
         onTriggered: {
             metronomeVisualization.beat();
         }
+    }
+
+    TempoLUT {
+        id: tempoLUT
     }
 }
 /*##^##

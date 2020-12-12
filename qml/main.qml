@@ -3,7 +3,6 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import Qt.labs.settings 1.0
 import WebLauncher 1.0
-import TempoLut 1.0
 
 import "./pages"
 
@@ -60,10 +59,6 @@ ApplicationWindow {
         property alias y: window.y
         property alias width: window.width
         property alias height: window.height
-    }
-
-    LUT {
-        id: lut
     }
 
     DonationPage {
