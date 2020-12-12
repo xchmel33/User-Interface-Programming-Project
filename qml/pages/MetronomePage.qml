@@ -12,14 +12,15 @@ Item {
 
     property int tempo: 80
     property string tempoName: "Adagio"
-
+    property int currentViewModelID: 0
 
     function setView(viewNo) {
         let newViewModel = itemModel.get(viewNo)
         let currViewModel = stackView.currentItem
-        if(newViewModel !== currViewModel) {
+        if (newViewModel !== currViewModel) {
             stackView.replace(newViewModel)
         }
+        metronomePage.currentViewModelID = viewNo
     }
 
     ObjectModel {
@@ -31,17 +32,13 @@ Item {
 
     StackView {
         id: stackView
-        anchors.fill: parent
-        initialItem: itemModel.get(1)
-
-        Settings {
-            property alias currentVisualiation: stackView.initialItem
-        }
+        initialItem: itemModel.get(currentViewModelID)
     }
 
     Settings {
         property alias tempo: metronomePage.tempo
         property alias tempoName: metronomePage.tempoName
+        property alias currentViewModelID: metronomePage.currentViewModelID
     }
 }
 
