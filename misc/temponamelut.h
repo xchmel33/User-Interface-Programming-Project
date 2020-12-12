@@ -13,17 +13,23 @@ public:
 private:
     bool isInRange(int low, int high, int val);
     QStringList LUT = {
-        "Adagissimo",
-        "Grave",
-        "Lento",
-        "Larghetto",
-        "Adagio",
-        "Andante",
-        "Moderato",
-        "Allegro",
-        "Vivace",
-        "Presto",
-        "Prestissimo"
+        "Adagissimo", // 0 < 24
+        "Grave", // 25 < 40
+        "Largo", // 40 < 46
+        "Lento", // 46 < 56
+        "Larghetto", // 56 < 62
+        "Adagio", // 62 < 72
+        "Andante", // 72 < 80
+        "Andantino", // 80 < 88
+        "Maestoso", // 88 < 96
+        "Moderato", // 96 < 108
+        "Allegretto", // 108 < 120
+        "Animato", // 120 < 132
+        "Allegro", // 132 < 144
+        "Allegro molto", // 144 < 162
+        "Vivace", // 162 < 184
+        "Presto", // 184 < 208
+        "Prestissimo" // > 208
     };
 };
 

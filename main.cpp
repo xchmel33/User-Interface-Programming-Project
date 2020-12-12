@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     app.setOrganizationDomain("xchmelo33.org");
     app.setApplicationName("FIT Metronom");
 
-    qmlRegisterType<tempoNameLUT>("TempoLut", 1, 0, "LUT");
+    qmlRegisterType<tempoNameLUT>("TempoLUT", 1, 0, "TempoLUT");
     qmlRegisterType<webLauncher>("WebLauncher", 1, 0, "DonationPage");
 
     QQmlApplicationEngine engine;
