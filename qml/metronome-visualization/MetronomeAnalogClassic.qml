@@ -198,6 +198,12 @@ MetronomeVisualization {
             break;
         }
     }
+
+    onRunningChanged: {
+        if (!metronomeAnalogClassic.running) {
+            metronomeAnalogClassic.state = "idle";
+        }
+    }
 }
 
 /*##^##
