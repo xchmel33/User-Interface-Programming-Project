@@ -34,19 +34,12 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     misc/donatePage.html \
-    qml/Diode.qml \
-    qml/FilledSlider.qml \
-    qml/MetronomeAnalogModern.qml \
-    qml/MetronomePage.qml \
-    qml/MetronomeSimple.qml \
-    qml/MetronomeVisualization.qml \
-    qml/PlayButton.qml \
-    qml/TempoIndicators.qml \
+    qml/SideMenu.qml \
     qml/components/Diode.qml \
-    qml/components/FilledSlider.qml \
     qml/components/PlayButton.qml \
-    qml/components/sideMenuIcon.svg \
+    qml/components/TempoControllers.qml \
     qml/components/TempoIndicators.qml \
+    qml/components/sideMenuIcon.svg \
     qml/metronome-visualization/MetronomeAnalogClassic.qml \
     qml/metronome-visualization/MetronomeAnalogModern.qml \
     qml/metronome-visualization/MetronomeSimple.qml \
@@ -57,7 +50,6 @@ DISTFILES += \
     qml/metronome-visualization/needle_small.svg \
     qml/metronome-visualization/pause.svg \
     qml/metronome-visualization/play.svg \
-    qml/needle_small.svg \
     qml/pages/MetronomePage.qml
 
 HEADERS += \

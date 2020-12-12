@@ -2,11 +2,20 @@
     <qresource prefix="/">
         <file alias="main.qml">qml/main.qml</file>
         <file alias="SideMenu.qml">qml/SideMenu.qml</file>
+    </qresource>
+    <qresource prefix="/pages">
         <file alias="MetronomePage.qml">qml/pages/MetronomePage.qml</file>
+    </qresource>
+    <qresource prefix="/components">
         <file alias="Diode.qml">qml/components/Diode.qml</file>
-        <file alias="FilledSlider.qml">qml/components/FilledSlider.qml</file>
+        <file alias="TempoControllers.qml">qml/components/TempoControllers.qml</file>
         <file alias="PlayButton.qml">qml/components/PlayButton.qml</file>
         <file alias="TempoIndicators.qml">qml/components/TempoIndicators.qml</file>
+        <file alias="sideMenuIcon.svg">qml/components/sideMenuIcon.svg</file>
+        <file alias="pause.svg">qml/metronome-visualization/pause.svg</file>
+        <file alias="play.svg">qml/metronome-visualization/play.svg</file>
+    </qresource>
+    <qresource prefix="/metronome-visualization">
         <file alias="MetronomeAnalogClassic.qml">qml/metronome-visualization/MetronomeAnalogClassic.qml</file>
         <file alias="MetronomeAnalogModern.qml">qml/metronome-visualization/MetronomeAnalogModern.qml</file>
         <file alias="MetronomeSimple.qml">qml/metronome-visualization/MetronomeSimple.qml</file>
@@ -15,8 +24,5 @@
         <file alias="metronome_base_larger.svg">qml/metronome-visualization/metronome_base_larger.svg</file>
         <file alias="needle.svg">qml/metronome-visualization/needle.svg</file>
         <file alias="needle_small.svg">qml/metronome-visualization/needle_small.svg</file>
-        <file alias="pause.svg">qml/metronome-visualization/pause.svg</file>
-        <file alias="play.svg">qml/metronome-visualization/play.svg</file>
-        <file>qml/components/sideMenuIcon.svg</file>
-    </qresource>
+        </qresource>
 </RCC>
