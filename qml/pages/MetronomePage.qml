@@ -3,6 +3,8 @@ import QtQml.Models 2.12
 import QtQuick.Controls 2.15
 import Qt.labs.settings 1.0
 
+import "../metronome-visualization"
+
 Item {
     id: metronomePage
     width: 480

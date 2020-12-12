@@ -5,6 +5,8 @@ import Qt.labs.settings 1.0
 import WebLauncher 1.0
 import TempoLut 1.0
 
+import "./pages"
+
 ApplicationWindow {
     id: window
     width: 700
