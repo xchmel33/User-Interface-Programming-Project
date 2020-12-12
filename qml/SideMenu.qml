@@ -45,7 +45,6 @@ Item {
                     fillMode: Image.PreserveAspectFit
                 }
             }
-
         }
 
         TextEdit {
@@ -59,16 +58,6 @@ Item {
             anchors.topMargin: 11
             anchors.leftMargin: 7
         }
-
-        FilledSlider {
-            id: tempoSlider
-            width: 235
-            height: 15
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.topMargin: 34
-        }
-
     }
 
     Timeline {
@@ -149,7 +138,6 @@ Item {
             name: "closed"
         }
     ]
-
 }
 
 
