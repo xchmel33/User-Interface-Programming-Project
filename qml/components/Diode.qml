@@ -5,61 +5,92 @@ Item {
     width: 20
     height: root.width
 
-    property bool lit
-    property color colorOff
-    property color colorOn
+    property color colorOff: "#222"
+    property color colorOn: "#666"
+    property int blinkDuration: 50
+
+    signal blink()
 
     Rectangle {
         id: diode
         width: root.width
         height: root.height
-        radius: 100
+        color: root.colorOff
+        radius: this.width / 2
         border.width: 2
 
-        states: [
-            State {
-                name: "off"
-                when: !lit
+        Rectangle {
+            id: diodeLightArea
+            width: parent.width * 1.5
+            height: parent.height * 1.5
+            color: root.colorOff
+            opacity: 0
+            radius: this.width / 2
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+    }
 
-                PropertyChanges {
-                    target: diode;
-                    color: colorOff
-                }
-            },
-            State {
-                name: "on"
-                when: lit
+    SequentialAnimation {
+        id: blinkAnimation
 
-                PropertyChanges {
-                    target: diode;
-                    color: colorOn
-                }
+        ParallelAnimation {
+            alwaysRunToEnd: true
+
+            PropertyAnimation {
+                target: diode
+                property: "color"
+                to: root.colorOn
+                duration: root.blinkDuration
             }
-        ]
-
-        transitions: [
-            Transition {
-                from: "off"
-                to: "on"
-                ColorAnimation {
-                    target: diode;
-                    alwaysRunToEnd: true
-                    duration: 2000;
-                    easing.type: Easing.InOutQuad
-                }
-            },
-            Transition {
-                from: "on"
-                to: "off"
-                ColorAnimation {
-                    target: diode;
-                    alwaysRunToEnd: true
-                    duration: 1000;
-                    easing.type: Easing.InOutQuad
-                }
+            PropertyAnimation {
+                target: diodeLightArea
+                property: "color"
+                to: root.colorOn
+                duration: root.blinkDuration
             }
-        ]
+            PropertyAnimation {
+                target: diodeLightArea
+                property: "opacity"
+                to: 0.4
+                duration: root.blinkDuration
+            }
+        }
+
+        ParallelAnimation {
+            id: offAnimation
+            alwaysRunToEnd: true
+
+            PropertyAnimation {
+                target: diode
+                property: "color"
+                to: root.colorOff
+                duration: root.blinkDuration
+            }
+            PropertyAnimation {
+                target: diodeLightArea
+                property: "color"
+                to: root.colorOff
+                duration: root.blinkDuration
+            }
+            PropertyAnimation {
+                target: diodeLightArea
+                property: "opacity"
+                to: 0
+                duration: root.blinkDuration
+            }
+        }
+    }
+
+    onBlink: {
+        blinkAnimation.start();
     }
 }
 
 
+
+/*##^##
+Designer {
+    D{i:0;formeditorZoom:4}
+}
+##^##*/

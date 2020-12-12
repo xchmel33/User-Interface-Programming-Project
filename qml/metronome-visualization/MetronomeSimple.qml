@@ -33,14 +33,12 @@ MetronomeVisualization {
 
                 Diode {
                     id: redDiode
-                    lit: false
                     colorOn: "#ee3737"
                     colorOff: "#ffd1d1"
                 }
 
                 Diode {
                     id: greenDiode
-                    lit: false
                     colorOn: "#4ee610"
                     colorOff: "#d8ffc8"
                 }
@@ -93,6 +91,10 @@ MetronomeVisualization {
         }
     }
 
+    onBeat: {
+        greenDiode.blink();
+    }
+
     QtObject {
         id: internal
         property int widthScale: metronomeSimple.width / 480
@@ -100,8 +102,4 @@ MetronomeVisualization {
     }
 }
 
-/*##^##
-Designer {
-    D{i:0;formeditorZoom:0.75}
-}
-##^##*/
+
