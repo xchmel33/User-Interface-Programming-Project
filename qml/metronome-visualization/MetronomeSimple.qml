@@ -155,11 +155,13 @@ MetronomeVisualization {
             PlayButton {
                 id: playButton
                 Layout.fillWidth: false
-                running: false
+                running: metronomeSimple.running
                 Layout.fillHeight: false
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+                onClicked: {
+                    metronomeSimple.runningChange(!metronomeSimple.running);
+                }
             }
-
         }
     }
 
