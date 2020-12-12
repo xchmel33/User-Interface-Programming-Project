@@ -44,7 +44,7 @@ Item {
 
     SoundEffect {
         id: beatPlayer
-        source: "/sounds/arcade-game-jump-coin.wav"
+        source: "/sounds/classic-click.wav"
     }
 
     onBeat: {
