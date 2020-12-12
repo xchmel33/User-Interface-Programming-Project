@@ -41,7 +41,6 @@ MetronomeVisualization {
                     colorOn: "#4ee610"
                     colorOff: "#d8ffc8"
                 }
-
             }
 
             TempoIndicators {
@@ -55,12 +54,11 @@ MetronomeVisualization {
                 tempoName: metronomeSimple.tempoName
                 centered: true
             }
-
         }
 
         ColumnLayout {
             id: controlsRow
-            Layout.fillHeight: false
+            Layout.fillHeight: true
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             spacing: 16
@@ -167,7 +165,6 @@ MetronomeVisualization {
 
     QtObject {
         id: internal
-        property int swingDuration: 60000 / tempo
         property int widthScale: metronomeSimple.width / 480
         property int heightScale: metronomeSimple.height / 680
     }

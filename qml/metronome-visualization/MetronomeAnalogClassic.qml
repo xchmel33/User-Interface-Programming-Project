@@ -96,27 +96,7 @@ MetronomeVisualization {
             running: metronomeAnalogClassic.running
             z: 20
             onClicked: {
-                metronomeAnalogClassic.running = !metronomeAnalogClassic.running
-            }
-        }
-    }
-
-    Timer {
-        interval: internal.swingDuration
-        running: metronomeAnalogClassic.running
-        repeat: true
-        onTriggered: {
-            console.info(metronomeAnalogClassic.state)
-            switch (metronomeAnalogClassic.state) {
-            case "idle":
-                metronomeAnalogClassic.state = "right";
-                break;
-            case "right":
-                metronomeAnalogClassic.state = "left";
-                break;
-            case "left":
-                metronomeAnalogClassic.state = "right";
-                break;
+                metronomeAnalogClassic.runningChange(!metronomeAnalogClassic.running);
             }
         }
     }
@@ -202,6 +182,20 @@ MetronomeVisualization {
             }
         }
     ]
+
+    onBeat: {
+        switch (metronomeAnalogClassic.state) {
+        case "idle":
+            metronomeAnalogClassic.state = "right";
+            break;
+        case "right":
+            metronomeAnalogClassic.state = "left";
+            break;
+        case "left":
+            metronomeAnalogClassic.state = "right";
+            break;
+        }
+    }
 }
 
 /*##^##

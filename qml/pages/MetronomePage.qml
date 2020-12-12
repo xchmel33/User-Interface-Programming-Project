@@ -10,11 +10,7 @@ Item {
 
     property int tempo: 80
     property string tempoName: "Adagio"
-    property bool running: false
 
-    function updateTempo(newTempo) {
-        metronomePage.tempo = newTempo;
-    }
 
     function setView(viewNo) {
         let newViewModel = itemModel.get(viewNo)
@@ -27,8 +23,8 @@ Item {
     ObjectModel {
         id: itemModel
 
-        MetronomeSimple { tempo: metronomePage.tempo; tempoName: metronomePage.tempoName; running: metronomePage.running; onTempoChange: updateTempo(newTempo) }
-        MetronomeAnalogClassic { tempo: metronomePage.tempo; tempoName: metronomePage.tempoName; running: metronomePage.running; onTempoChange: updateTempo(newTempo) }
+        MetronomeSimple { tempo: metronomePage.tempo; tempoName: metronomePage.tempoName }
+        MetronomeAnalogClassic { tempo: metronomePage.tempo; tempoName: metronomePage.tempoName }
     }
 
     StackView {
