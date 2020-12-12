@@ -104,14 +104,14 @@ Item {
 
     Connections {
         target: menuButtonArea
-        onClicked: setState("opening")
-        enabled: sideMenu.state === "closed"
+        enabled: sideMenu.state === "opened"
+        function onClicked() { setState("closing") }
     }
 
     Connections {
         target: menuButtonArea
-        onClicked: setState("closing")
-        enabled: sideMenu.state === "opened"
+        enabled: sideMenu.state === "closed"
+        function onClicked() { setState("opening") }
     }
 
     states: [
