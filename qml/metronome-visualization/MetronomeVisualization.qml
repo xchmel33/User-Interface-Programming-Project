@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtMultimedia 5.12
 import TempoLUT 1.0
 
 Item {
@@ -39,6 +40,15 @@ Item {
         onTriggered: {
             metronomeVisualization.beat();
         }
+    }
+
+    SoundEffect {
+        id: beatPlayer
+        source: "/sounds/arcade-game-jump-coin.wav"
+    }
+
+    onBeat: {
+        beatPlayer.play();
     }
 
     TempoLUT {

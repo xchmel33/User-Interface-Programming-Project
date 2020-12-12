@@ -24,5 +24,8 @@
         <file alias="metronome_base_larger.svg">qml/metronome-visualization/metronome_base_larger.svg</file>
         <file alias="needle.svg">qml/metronome-visualization/needle.svg</file>
         <file alias="needle_small.svg">qml/metronome-visualization/needle_small.svg</file>
-        </qresource>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file alias="classic-click.wav">sounds/classic-click.wav</file>
+    </qresource>
 </RCC>

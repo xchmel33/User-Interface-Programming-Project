@@ -50,7 +50,8 @@ DISTFILES += \
     qml/metronome-visualization/needle_small.svg \
     qml/metronome-visualization/pause.svg \
     qml/metronome-visualization/play.svg \
-    qml/pages/MetronomePage.qml
+    qml/pages/MetronomePage.qml \
+    sounds/classic-click.wav \
 
 HEADERS += \
     misc/temponamelut.h \
