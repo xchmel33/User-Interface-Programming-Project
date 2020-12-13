@@ -7,7 +7,9 @@ Item {
     property int tempo: 80
     property string tempoName: "Adagio"
     property bool running: false
-    property string beatSound: "/sound/classic-click.wav"
+    property string beatSound: "/sounds/classic-click.wav"
+    property var tapPerSecondStart: 0
+    property var tapPerSecondEnd: 0
 
     // tempo == beats per second; 60000 is a minute in ms
     readonly property int tempoMs: 60000 / this.tempo
@@ -17,6 +19,7 @@ Item {
     signal runningChange(bool newState)
     signal tempoChange(int newTempo)
     signal beat();
+    signal tap();
 
     Connections {
         target: metronomeVisualization
@@ -38,6 +41,17 @@ Item {
             if (beatSoundPlayer !== null && beatSoundPlayer.status === SoundEffect.Ready)
                 beatSoundPlayer.play();
         }
+
+        function onTap() {
+            metronomeVisualization.tapPerSecondStart = metronomeVisualization.tapPerSecondEnd;
+            metronomeVisualization.tapPerSecondEnd = new Date().getTime()
+
+            if (metronomeVisualization.tapPerSecondStart !== 0) {
+                // Date.now() returns time in milliseconds
+                let elapsedTime = metronomeVisualization.tapPerSecondEnd - metronomeVisualization.tapPerSecondStart;
+                let newTempo = 60000 / elapsedTime;
+                metronomeVisualization.tempoChange(newTempo);
+            }
         }
     }
 

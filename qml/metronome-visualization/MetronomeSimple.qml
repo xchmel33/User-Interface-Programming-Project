@@ -24,6 +24,7 @@ MetronomeVisualization {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.fillHeight: true
             Layout.fillWidth: true
+            Layout.minimumHeight: (parent / 2) - (32 / 2)
 
             RowLayout {
                 id: diodeRow
@@ -48,6 +49,7 @@ MetronomeVisualization {
                 id: tempoIndicators
                 width: root.width
                 height: 128
+                Layout.minimumHeight: 200
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -61,6 +63,7 @@ MetronomeVisualization {
             id: controlsRow
             Layout.fillHeight: true
             Layout.fillWidth: true
+            Layout.minimumHeight: (parent.height / 2) - (32 / 2)
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             spacing: 16
 
@@ -79,14 +82,37 @@ MetronomeVisualization {
                 }
             }
 
-            PlayButton {
-                id: playButton
-                Layout.fillWidth: false
-                running: metronomeSimple.running
-                Layout.fillHeight: false
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-                onClicked: {
-                    metronomeSimple.runningChange(!metronomeSimple.running);
+            RowLayout {
+                spacing: 32
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+
+                RoundButton {
+                    id: tapButton
+                    text: qsTr("TAP")
+                    font.pointSize: 16
+                    hoverEnabled: true
+                    flat: false
+                    highlighted: true
+                    autoRepeatDelay: 0
+                    Layout.preferredWidth: 70
+                    Layout.preferredHeight: 70
+                    Layout.fillHeight: false
+                    Layout.fillWidth: false
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    onPressed: {
+                        metronomeSimple.tap();
+                    }
+                }
+
+                PlayButton {
+                    id: playButton
+                    running: metronomeSimple.running
+                    Layout.fillWidth: false
+                    Layout.fillHeight: false
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    onClicked: {
+                        metronomeSimple.runningChange(!metronomeSimple.running);
+                    }
                 }
             }
         }
