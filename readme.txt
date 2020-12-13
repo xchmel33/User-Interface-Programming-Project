@@ -13,6 +13,7 @@ Použité knihovny:
 - QtQml.Models 2.12
 - QtMultimedia 5.12
 - Qt.labs.settings 1.0
+- WebLauncher 1.0
 
 ## Návod k instalaci
 
