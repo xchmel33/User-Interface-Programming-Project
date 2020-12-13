@@ -6,8 +6,8 @@ import "../components"
 
 MetronomeVisualization {
     id: metronomeSimple
-    width: 480
-    height: 680
+    height: parent !== null ? parent.height : 680
+    width: (this.height / 16) * 9
 
     ColumnLayout {
         id: root
@@ -28,18 +28,25 @@ MetronomeVisualization {
 
             RowLayout {
                 id: diodeRow
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                Layout.preferredHeight: parent.height / 12
                 Layout.fillHeight: false
                 spacing: 16
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
                 Diode {
                     id: redDiode
+                    Layout.preferredWidth: this.height
+                    Layout.fillHeight: true
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     colorOn: "#ee3737"
                     colorOff: "#ffd1d1"
                 }
 
                 Diode {
                     id: greenDiode
+                    Layout.preferredWidth: this.height
+                    Layout.fillHeight: true
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     colorOn: "#4ee610"
                     colorOff: "#d8ffc8"
                 }
@@ -64,14 +71,15 @@ MetronomeVisualization {
             Layout.fillHeight: true
             Layout.fillWidth: true
             Layout.minimumHeight: (parent.height / 2) - (32 / 2)
+            Layout.maximumHeight: (parent.height / 2)
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             spacing: 16
 
             TempoControllers {
                 id: tempoControllers
-                height: 200
                 fillColor: "#76ccfc"
                 handleColor: "#24a5ec"
+                Layout.preferredHeight: parent.height / 2
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 enabled: !metronomeSimple.running
                 minValue: metronomeSimple.minTempo
@@ -83,21 +91,23 @@ MetronomeVisualization {
             }
 
             RowLayout {
+                Layout.minimumHeight: 100
+                Layout.fillHeight: false
+                Layout.fillWidth: false
+                Layout.preferredHeight: parent.height / 3
                 spacing: 32
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
                 RoundButton {
                     id: tapButton
                     text: qsTr("TAP")
-                    font.pointSize: 16
+                    font.pointSize: (16 * (this.width / 78)) <= 0 ? 16 : (16 * (this.width / 78))
                     hoverEnabled: true
                     flat: false
                     highlighted: true
                     autoRepeatDelay: 0
-                    Layout.preferredWidth: 70
-                    Layout.preferredHeight: 70
-                    Layout.fillHeight: false
-                    Layout.fillWidth: false
+                    Layout.preferredHeight: 2 * (parent.height / 3)
+                    Layout.preferredWidth: 2 * (parent.height / 3)
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     onPressed: {
                         metronomeSimple.tap();
@@ -107,6 +117,7 @@ MetronomeVisualization {
                 PlayButton {
                     id: playButton
                     running: metronomeSimple.running
+                    Layout.preferredHeight: parent.height
                     Layout.fillWidth: false
                     Layout.fillHeight: false
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter

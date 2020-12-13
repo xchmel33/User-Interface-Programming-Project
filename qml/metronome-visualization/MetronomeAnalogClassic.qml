@@ -7,13 +7,13 @@ import "../components"
 
 MetronomeVisualization {
     id: metronomeAnalogClassic
-    width: 480
-    height: 680
+    width: 9 * (this.height / 16)
+    height: parent !== null ? parent.height : 680
     state: "idle"
 
     TempoIndicators {
         id: tempoIndicators
-        height: 128
+        height: parent.height / 6
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
@@ -25,19 +25,16 @@ MetronomeVisualization {
 
     QtObject {
         id: internal
-        property int widthScale: metronomeAnalogClassic.width / 480
-        property int heightScale: metronomeAnalogClassic.height / 680
         property bool sliderEnabled: true
     }
 
     RowLayout {
         id: row
-        y: 579
-        height: parent.height / 6
+        height: parent.height / 7
+        spacing: 6
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        spacing: 6
         anchors.leftMargin: 0
         anchors.rightMargin: 0
         anchors.bottomMargin: 0
@@ -55,8 +52,9 @@ MetronomeVisualization {
                 width: this.height
                 text: qsTr("TAP")
                 anchors.verticalCenter: parent.verticalCenter
+                display: AbstractButton.TextOnly
                 anchors.horizontalCenter: parent.horizontalCenter
-                font.pointSize: 16
+                font.pointSize: (16 * (this.width / 78)) <= 0 ? 16 : (16 * (this.width / 78))
                 hoverEnabled: true
                 flat: false
                 highlighted: true
@@ -69,39 +67,34 @@ MetronomeVisualization {
 
         Image {
             id: metronomBase
-            width: metronomeAnalogClassic.width / 2
-            anchors.bottom: parent.bottom
             source: "metronome_base.svg"
+            sourceSize.height: this.height
+            Layout.preferredHeight: parent.height
             Layout.preferredWidth: this.height * 2
             Layout.alignment: Qt.AlignLeft | Qt.AlignBottom
-            Layout.fillWidth: false
-            Layout.fillHeight: true
-            anchors.bottomMargin: 0
-            anchors.horizontalCenter: parent.horizontalCenter
             fillMode: Image.PreserveAspectFit
             z: 10
 
             Image {
                 id: needle
-                y: 0
-                height: (metronomeAnalogClassic.height / 5) * 4
+                height: (metronomeAnalogClassic.height / 4) * 3
                 visible: true
                 anchors.bottom: parent.bottom
                 source: "needle.svg"
+                mirror: false
                 anchors.bottomMargin: 16
                 anchors.horizontalCenter: parent.horizontalCenter
                 z: -10
                 transformOrigin: Item.Bottom
-                sourceSize.height: 520
-                sourceSize.width: 20
+                sourceSize.height: this.height
                 fillMode: Image.PreserveAspectFit
                 rotation: 0
 
                 Rectangle {
                     id: slider
                     y: 30
-                    width: 45
-                    height: 60
+                    width: parent.width * 1.5
+                    height: this.width * 1.5
                     color: "darkgray"
                     anchors.horizontalCenter: parent.horizontalCenter
 
@@ -260,6 +253,14 @@ MetronomeVisualization {
     }
 
     onTempoChanged: {
+        metronomeAnalogClassic.syncSliders();
+    }
+
+    onHeightChanged: {
+        metronomeAnalogClassic.syncSliders();
+    }
+
+    onSyncSliders: {
         let maxTempo = metronomeAnalogClassic.maxTempo;
         let minTempo = metronomeAnalogClassic.minTempo;
         let maxY = sliderMouseArea.drag.maximumY;

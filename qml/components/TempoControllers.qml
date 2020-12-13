@@ -21,8 +21,7 @@ ColumnLayout {
         color: "white"
         radius: root.height / 2
         border.width: 2
-        Layout.minimumHeight: root.height / 3
-        Layout.maximumHeight: root.height / 3
+        Layout.preferredHeight: root.height / 3
         Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
         Layout.fillWidth: true
         Layout.fillHeight: true
@@ -85,8 +84,7 @@ ColumnLayout {
         id: buttonRow
         Layout.rightMargin: 16
         Layout.leftMargin: 16
-        Layout.minimumHeight: 2 * (root.height / 3) - parent.spacing
-        Layout.maximumHeight: 2 * (root.height / 3) - parent.spacing
+        Layout.preferredHeight: 2 * (root.height / 3) - parent.spacing
         Layout.fillHeight: true
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter

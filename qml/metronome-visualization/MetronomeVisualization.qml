@@ -20,6 +20,7 @@ Item {
     signal tempoChange(int newTempo)
     signal beat();
     signal tap();
+    signal syncSliders();
 
     Connections {
         target: metronomeVisualization
