@@ -30,6 +30,14 @@ Item {
 
         function onRunningChange() {
             metronomeVisualization.running = !metronomeVisualization.running;
+            if (metronomeVisualization.running === false)
+                beatSoundPlayer.stop();
+        }
+
+        function onBeat() {
+            if (beatSoundPlayer !== null && beatSoundPlayer.status === SoundEffect.Ready)
+                beatSoundPlayer.play();
+        }
         }
     }
 
@@ -46,16 +54,6 @@ Item {
     SoundEffect {
         id: beatSoundPlayer
         source: metronomeVisualization.beatSound
-    }
-
-    onBeat: {
-        if (beatSoundPlayer !== null && beatSoundPlayer.status === SoundEffect.Ready)
-            beatSoundPlayer.play();
-    }
-
-    onRunningChange: {
-        if (newState === false)
-            beatSoundPlayer.stop();
     }
 
     TempoLUT {
