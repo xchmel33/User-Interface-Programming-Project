@@ -34,7 +34,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     misc/donatePage.html \
-    qml/SideMenu.qml \
     qml/components/Diode.qml \
     qml/components/PlayButton.qml \
     qml/components/TempoControllers.qml \

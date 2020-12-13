@@ -49,9 +49,39 @@ ApplicationWindow {
         }
     }
 
-    SideMenu {
-        id: sidemenu
-        width: window.width
+    Rectangle {
+        id: drawerInteractArea
+        height: window.height - window.menuBar.height
+        border.width: 0
+        width: window.width / 20
+        opacity: 0.5
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+
+        gradient: Gradient {
+            orientation: Gradient.Horizontal
+            GradientStop {
+                position: 1
+                color: "#b3b3b3"
+            }
+
+            GradientStop {
+                position: 0
+                color: "#00000000"
+            }
+        }
+    }
+
+    Drawer {
+        id: drawer
+        modal: true
+        interactive: true
+        height: window.height - window.menuBar.height
+        width: window.width / 1.5
+        position: 0
+        edge: Qt.RightEdge
+        dragMargin: window.width / 20
+        topMargin: window.menuBar.height
     }
 
     Settings {
