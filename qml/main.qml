@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
+import QtQml.Models 2.12
+import QtMultimedia 5.12
 import Qt.labs.settings 1.0
 import WebLauncher 1.0
 
@@ -38,6 +40,17 @@ ApplicationWindow {
                 text: qsTr("&Simple")
                 onTriggered: metronomePage.setView(0)
             }
+        }
+
+        Menu {
+            title: qsTr("&Sound")
+            Repeater {
+                   model: beatSoundModel
+                   MenuItem {
+                      text: model.soundName
+                      onTriggered: metronomePage.setBeatSound(model.source)
+                   }
+               }
         }
 
         Menu {
@@ -84,14 +97,23 @@ ApplicationWindow {
         topMargin: window.menuBar.height
     }
 
+    ListModel {
+        id: beatSoundModel
+
+        ListElement { soundName: "Classic click" ; source: "/sounds/classic-click.wav" }
+        ListElement { soundName: "Arcade Bleep" ; source: "/sounds/arcade-game-jump-coin.wav" }
+        ListElement { soundName: "Kiss" ; source: "/sounds/little-cute-kiss.wav" }
+        ListElement { soundName: "Countdown Bleep" ; source: "/sounds/clock-countdown-bleeps.wav" }
+    }
+
+    DonationPage {
+        id: donationPage
+    }
+
     Settings {
         property alias x: window.x
         property alias y: window.y
         property alias width: window.width
         property alias height: window.height
-    }
-
-    DonationPage {
-        id: donationPage
     }
 }
