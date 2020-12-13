@@ -133,11 +133,14 @@ MetronomeVisualization {
         greenDiode.blink();
     }
 
+    onSyncSliders: {
+        tempoControllers.syncSliders();
+    }
+
     QtObject {
         id: internal
         property int widthScale: metronomeSimple.width / 480
         property int heightScale: metronomeSimple.height / 680
     }
 }
-
 

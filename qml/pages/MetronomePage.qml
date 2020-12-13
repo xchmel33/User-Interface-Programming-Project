@@ -27,6 +27,7 @@ Item {
         let currViewModel = stackView.currentItem
         if (newViewModel !== currViewModel) {
             stackView.replace(newViewModel)
+            newViewModel.syncSliders();
         }
         metronomePage.currentViewModelID = viewNo
     }

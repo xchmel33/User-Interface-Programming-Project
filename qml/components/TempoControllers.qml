@@ -15,6 +15,7 @@ ColumnLayout {
     property color handleColor: "#666"
 
     signal valueChange(int newValue)
+    signal syncSliders()
 
     Rectangle {
         id: slider
@@ -125,6 +126,7 @@ ColumnLayout {
                     onClicked: {
                         let newValue = root.value - 1;
                         root.valueChange(newValue);
+                        root.syncSliders();
                     }
                 }
             }
@@ -175,13 +177,14 @@ ColumnLayout {
                     onClicked: {
                         let newValue = root.value + 1;
                         root.valueChange(newValue);
+                        root.syncSliders();
                     }
                 }
             }
         }
     }
 
-    onValueChanged: {
+    onSyncSliders: {
         let maxX = handleMouseArea.drag.maximumX;
         let minX = handleMouseArea.drag.minimumX;
 
