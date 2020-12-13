@@ -74,6 +74,8 @@ Item {
     TempoLUT {
         id: tempoLUT
     }
+
+    Component.onCompleted: syncSliders()
 }
 /*##^##
 Designer {
