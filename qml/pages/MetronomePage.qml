@@ -40,6 +40,7 @@ Item {
 
     StackView {
         id: stackView
+        anchors.fill: parent
         initialItem: itemModel.get(currentViewModelID)
     }
 
