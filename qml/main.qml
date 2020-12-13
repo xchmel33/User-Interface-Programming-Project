@@ -17,8 +17,6 @@ ApplicationWindow {
     visible: true
     title: qsTr("FIT Metronome")
 
-    readonly property bool hasSpace: ((window.width - metronomePage.contentWidth) / 2) > (drawerInteractArea.width + drawer.width)
-
     MetronomePage {
         id: metronomePage
         anchors.fill: parent
@@ -51,14 +49,13 @@ ApplicationWindow {
 
     Drawer {
         id: drawer
-        modal: hasSpace ? false : true
-        interactive: hasSpace ? false : true
+        modal: true
+        interactive: true
         height: window.height
-        width: 350
+        width: window.width / 1.5
         position: 0
         edge: Qt.RightEdge
         dragMargin: window.width / 20
-        closePolicy: Popup.NoAutoClose
 
         Label {
             id: labelTheme
@@ -186,23 +183,5 @@ ApplicationWindow {
         property alias y: window.y
         property alias width: window.width
         property alias height: window.height
-    }
-
-    /* open menu if wide enough */
-    onWidthChanged: {
-        if(!drawer.opened) {
-            if(hasSpace) {
-                drawer.open()
-            } else {
-                drawer.close()
-            }
-        }
-    }
-
-    /* open menu at start if wide enough */
-    Component.onCompleted: {
-        if(hasSpace) {
-            drawer.open()
-        }
     }
 }
