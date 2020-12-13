@@ -192,7 +192,6 @@ ColumnLayout {
         handle.x = ((root.value - root.minValue) * (maxX - minX)) / (root.maxValue - root.minValue) + minX;
 
         internal.sliderEnabled = true;
-        console.info("123", ((root.value - root.minValue) * (maxX - minX)) / (root.maxvalue - root.minValue) + minX)
     }
 
     QtObject {
