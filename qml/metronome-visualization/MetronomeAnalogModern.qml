@@ -5,7 +5,7 @@ import QtQml.Models 2.1
 Item {
     id: metronomeAnalogModern
     width: 480
-    height: 680
+    height: parent.height
     state: "idle"
 
     property int tempo
