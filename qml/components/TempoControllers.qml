@@ -81,6 +81,8 @@ ColumnLayout {
 
     RowLayout {
         id: buttonRow
+        Layout.rightMargin: 16
+        Layout.leftMargin: 16
         Layout.minimumHeight: 2 * (root.height / 3) - parent.spacing
         Layout.maximumHeight: 2 * (root.height / 3) - parent.spacing
         Layout.fillHeight: true
@@ -184,6 +186,6 @@ ColumnLayout {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:1.659999966621399}D{i:8}D{i:12}
+    D{i:0;formeditorZoom:1.659999966621399}
 }
 ##^##*/
