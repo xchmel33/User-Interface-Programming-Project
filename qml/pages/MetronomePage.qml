@@ -9,11 +9,12 @@ import "../metronome-visualization"
 Item {
     id: metronomePage
     width: 480
-    height: 560
+    height: stackView.currentItem.height
 
     property int tempo: 80
     property string tempoName: "Adagio"
     property string beatSound: "/sound/classic-click.wav"
+    property string currentProfile: "Default"
 
     property int currentViewModelID: 0
 

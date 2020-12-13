@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file alias="main.qml">qml/main.qml</file>
-        <file alias="SideMenu.qml">qml/SideMenu.qml</file>
     </qresource>
     <qresource prefix="/pages">
         <file alias="MetronomePage.qml">qml/pages/MetronomePage.qml</file>

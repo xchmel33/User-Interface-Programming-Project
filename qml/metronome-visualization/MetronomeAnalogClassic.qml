@@ -23,7 +23,7 @@ MetronomeVisualization {
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.topMargin: 0
-        anchors.leftMargin: 0
+        anchors.leftMargin: 15
         tempo: metronomeAnalogClassic.tempo
         tempoName: metronomeAnalogClassic.tempoName
     }
