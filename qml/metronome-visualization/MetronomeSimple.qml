@@ -102,6 +102,7 @@ MetronomeVisualization {
                     id: tapButton
                     text: qsTr("TAP")
                     font.pointSize: (16 * (this.width / 78)) <= 0 ? 16 : (16 * (this.width / 78))
+                    enabled: !metronomeSimple.running
                     hoverEnabled: true
                     flat: false
                     highlighted: true
