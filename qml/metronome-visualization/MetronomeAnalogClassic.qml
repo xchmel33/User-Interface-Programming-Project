@@ -51,6 +51,7 @@ MetronomeVisualization {
                 height: 3 * (parent.height / 4)
                 width: this.height
                 text: qsTr("TAP")
+                enabled: !metronomeAnalogClassic.running
                 anchors.verticalCenter: parent.verticalCenter
                 display: AbstractButton.TextOnly
                 anchors.horizontalCenter: parent.horizontalCenter
