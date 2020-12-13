@@ -14,6 +14,7 @@ Item {
     property string beatSound: "/sounds/classic-click.wav"
     property string currentProfile: "Default"
     property int currentViewModelID: 0
+    property int currentWidth: stackView.currentItem.width
 
     function setBeatSound(newBeatSound) {
         metronomePage.beatSound = newBeatSound
