@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.12
 import QtQml.Models 2.1
 
 import "../components"
@@ -9,12 +10,6 @@ MetronomeVisualization {
     width: 480
     height: 680
     state: "idle"
-
-    QtObject {
-        id: internal
-        property int widthScale: metronomeAnalogClassic.width / 480
-        property int heightScale: metronomeAnalogClassic.height / 680
-    }
 
     TempoIndicators {
         id: tempoIndicators
@@ -28,78 +23,134 @@ MetronomeVisualization {
         tempoName: metronomeAnalogClassic.tempoName
     }
 
-    Image {
-        id: metronomBase
-        width: metronomeAnalogClassic.width / 2
+    QtObject {
+        id: internal
+        property int widthScale: metronomeAnalogClassic.width / 480
+        property int heightScale: metronomeAnalogClassic.height / 680
+    }
+
+    RowLayout {
+        id: row
+        y: 579
+        height: parent.height / 6
+        anchors.left: parent.left
+        anchors.right: parent.right
         anchors.bottom: parent.bottom
-        source: "metronome_base.svg"
+        spacing: 6
+        anchors.leftMargin: 0
+        anchors.rightMargin: 0
         anchors.bottomMargin: 0
-        anchors.horizontalCenter: parent.horizontalCenter
-        fillMode: Image.PreserveAspectFit
-        z: 10
 
-        Image {
-            id: needle
-            y: 0
-            height: (metronomeAnalogClassic.height / 5) * 4
-            visible: true
-            anchors.bottom: parent.bottom
-            source: "needle.svg"
-            anchors.bottomMargin: 16
-            anchors.horizontalCenter: parent.horizontalCenter
-            z: -10
-            transformOrigin: Item.Bottom
-            sourceSize.height: 520
-            sourceSize.width: 20
-            fillMode: Image.PreserveAspectFit
-            rotation: 0
+        Item {
+            id: leftItem
+            width: 200
+            height: 200
+            Layout.fillWidth: true
+            Layout.fillHeight: true
 
-            Rectangle {
-                id: slider
-                y: 30
-                width: 45
-                height: 60
-                color: "darkgray"
+            RoundButton {
+                id: tapButton
+                height: 3 * (parent.height / 4)
+                width: this.height
+                text: qsTr("TAP")
+                anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-
-                onYChanged: {
-                    let maxTempo = metronomeAnalogClassic.maxTempo;
-                    let minTempo = metronomeAnalogClassic.minTempo;
-                    let maxY = sliderMouseArea.drag.maximumY;
-                    let minY = sliderMouseArea.drag.minimumY;
-
-                    let newTempo = Math.floor((slider.y - minY) / (maxY - minY) * (maxTempo - minTempo) + minTempo);
-                    metronomeAnalogClassic.tempoChange(newTempo);
-                }
-
-                MouseArea {
-                    id: sliderMouseArea
-                    width: slider.width
-                    height: slider.height
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    enabled: metronomeAnalogClassic.state == "idle" ? true : false
-                    drag.target: slider
-                    drag.axis: Drag.YAxis
-                    drag.minimumY: 20
-                    drag.maximumY: needle.height - metronomBase.height - slider.height
+                font.pointSize: 16
+                hoverEnabled: true
+                flat: false
+                highlighted: true
+                autoRepeatDelay: 0
+                onPressed: {
+                    metronomeAnalogClassic.tap();
                 }
             }
         }
 
-        PlayButton {
-            id: playButton
-            x: 53
-            y: 8
-            width: 80
-            height: 80
-            anchors.verticalCenter: parent.verticalCenter
+        Image {
+            id: metronomBase
+            width: metronomeAnalogClassic.width / 2
+            anchors.bottom: parent.bottom
+            source: "metronome_base.svg"
+            Layout.preferredWidth: this.height * 2
+            Layout.alignment: Qt.AlignLeft | Qt.AlignBottom
+            Layout.fillWidth: false
+            Layout.fillHeight: true
+            anchors.bottomMargin: 0
             anchors.horizontalCenter: parent.horizontalCenter
-            running: metronomeAnalogClassic.running
-            z: 20
-            onClicked: {
-                metronomeAnalogClassic.runningChange(!metronomeAnalogClassic.running);
+            fillMode: Image.PreserveAspectFit
+            z: 10
+
+            Image {
+                id: needle
+                y: 0
+                height: (metronomeAnalogClassic.height / 5) * 4
+                visible: true
+                anchors.bottom: parent.bottom
+                source: "needle.svg"
+                anchors.bottomMargin: 16
+                anchors.horizontalCenter: parent.horizontalCenter
+                z: -10
+                transformOrigin: Item.Bottom
+                sourceSize.height: 520
+                sourceSize.width: 20
+                fillMode: Image.PreserveAspectFit
+                rotation: 0
+
+                Rectangle {
+                    id: slider
+                    y: 30
+                    width: 45
+                    height: 60
+                    color: "darkgray"
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    onYChanged: {
+                        let maxTempo = metronomeAnalogClassic.maxTempo;
+                        let minTempo = metronomeAnalogClassic.minTempo;
+                        let maxY = sliderMouseArea.drag.maximumY;
+                        let minY = sliderMouseArea.drag.minimumY;
+
+                        let newTempo = Math.floor((slider.y - minY) / (maxY - minY) * (maxTempo - minTempo) + minTempo);
+                        metronomeAnalogClassic.tempoChange(newTempo);
+                    }
+
+                    MouseArea {
+                        id: sliderMouseArea
+                        width: slider.width
+                        height: slider.height
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        enabled: metronomeAnalogClassic.state == "idle" ? true : false
+                        drag.target: slider
+                        drag.axis: Drag.YAxis
+                        drag.minimumY: 20
+                        drag.maximumY: needle.height - metronomBase.height - slider.height
+                    }
+                }
             }
+
+            PlayButton {
+                id: playButton
+                x: 53
+                y: 8
+                width: 80
+                height: 80
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                running: metronomeAnalogClassic.running
+                z: 20
+                onClicked: {
+                    metronomeAnalogClassic.runningChange(!metronomeAnalogClassic.running);
+                }
+            }
+        }
+
+        Item {
+            id: rightItem
+            width: 200
+            height: 200
+            Layout.fillWidth: true
+            Layout.fillHeight: true
         }
     }
 
@@ -209,5 +260,6 @@ MetronomeVisualization {
 /*##^##
 Designer {
     D{i:0;annotation:"1 //;;//  //;;// Ondřej Míchal //;;// <!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html> //;;// 1605282090";customId:""}
+D{i:5}
 }
 ##^##*/
