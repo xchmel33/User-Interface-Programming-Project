@@ -27,5 +27,8 @@
     </qresource>
     <qresource prefix="/sounds">
         <file alias="classic-click.wav">sounds/classic-click.wav</file>
+        <file alias="arcade-game-jump-coin.wav">sounds/arcade-game-jump-coin.wav</file>
+        <file alias="clock-countdown-bleeps.wav">sounds/clock-countdown-bleeps.wav</file>
+        <file alias="little-cute-kiss.wav">sounds/little-cute-kiss.wav</file>
     </qresource>
 </RCC>

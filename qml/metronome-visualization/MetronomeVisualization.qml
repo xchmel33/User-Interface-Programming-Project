@@ -7,6 +7,7 @@ Item {
     property int tempo: 80
     property string tempoName: "Adagio"
     property bool running: false
+    property string beatSound: "/sound/classic-click.wav"
 
     // tempo == beats per second; 60000 is a minute in ms
     readonly property int tempoMs: 60000 / this.tempo
@@ -43,12 +44,18 @@ Item {
     }
 
     SoundEffect {
-        id: beatPlayer
-        source: "/sounds/classic-click.wav"
+        id: beatSoundPlayer
+        source: metronomeVisualization.beatSound
     }
 
     onBeat: {
-        beatPlayer.play();
+        if (beatSoundPlayer !== null && beatSoundPlayer.status === SoundEffect.Ready)
+            beatSoundPlayer.play();
+    }
+
+    onRunningChange: {
+        if (newState === false)
+            beatSoundPlayer.stop();
     }
 
     TempoLUT {
