@@ -27,6 +27,7 @@ MetronomeVisualization {
         id: internal
         property int widthScale: metronomeAnalogClassic.width / 480
         property int heightScale: metronomeAnalogClassic.height / 680
+        property bool sliderEnabled: true
     }
 
     RowLayout {
@@ -105,13 +106,15 @@ MetronomeVisualization {
                     anchors.horizontalCenter: parent.horizontalCenter
 
                     onYChanged: {
-                        let maxTempo = metronomeAnalogClassic.maxTempo;
-                        let minTempo = metronomeAnalogClassic.minTempo;
-                        let maxY = sliderMouseArea.drag.maximumY;
-                        let minY = sliderMouseArea.drag.minimumY;
+                        if (internal.sliderEnabled) {
+                            let maxTempo = metronomeAnalogClassic.maxTempo;
+                            let minTempo = metronomeAnalogClassic.minTempo;
+                            let maxY = sliderMouseArea.drag.maximumY;
+                            let minY = sliderMouseArea.drag.minimumY;
 
-                        let newTempo = Math.floor((slider.y - minY) / (maxY - minY) * (maxTempo - minTempo) + minTempo);
-                        metronomeAnalogClassic.tempoChange(newTempo);
+                            let newTempo = ((slider.y - minY) * (maxTempo - minTempo)) / (maxY - minY) + minTempo;
+                            metronomeAnalogClassic.tempoChange(newTempo);
+                        }
                     }
 
                     MouseArea {
@@ -254,6 +257,19 @@ MetronomeVisualization {
         if (!metronomeAnalogClassic.running) {
             metronomeAnalogClassic.state = "idle";
         }
+    }
+
+    onTempoChanged: {
+        let maxTempo = metronomeAnalogClassic.maxTempo;
+        let minTempo = metronomeAnalogClassic.minTempo;
+        let maxY = sliderMouseArea.drag.maximumY;
+        let minY = sliderMouseArea.drag.minimumY;
+
+        internal.sliderEnabled = false;
+
+        slider.y = ((tempo - minTempo) * (maxY - minY)) / (maxTempo - minTempo) + minY;
+
+        internal.sliderEnabled = true;
     }
 }
 

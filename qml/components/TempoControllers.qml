@@ -50,8 +50,10 @@ ColumnLayout {
             transformOrigin: Item.Center
 
             onXChanged: {
-                let newValue = handle.x / (slider.width - slider.border.width - handle.width) * (root.maxValue - root.minValue) + root.minValue;
-                root.valueChange(newValue);
+                if (internal.sliderEnabled) {
+                    let newValue = handle.x / (slider.width - slider.border.width - handle.width) * (root.maxValue - root.minValue) + root.minValue;
+                    root.valueChange(newValue);
+                }
             }
 
             MouseArea {
@@ -179,8 +181,23 @@ ColumnLayout {
                 }
             }
         }
+    }
 
+    onValueChanged: {
+        let maxX = handleMouseArea.drag.maximumX;
+        let minX = handleMouseArea.drag.minimumX;
 
+        internal.sliderEnabled = false;
+
+        handle.x = ((root.value - root.minValue) * (maxX - minX)) / (root.maxValue - root.minValue) + minX;
+
+        internal.sliderEnabled = true;
+        console.info("123", ((root.value - root.minValue) * (maxX - minX)) / (root.maxvalue - root.minValue) + minX)
+    }
+
+    QtObject {
+        id: internal
+        property bool sliderEnabled: true
     }
 }
 
