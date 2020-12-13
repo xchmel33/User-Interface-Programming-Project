@@ -8,8 +8,8 @@ import "../metronome-visualization"
 
 Item {
     id: metronomePage
-    width: 480
-    height: stackView.currentItem.height
+    width: parent.width
+    height: parent.height
 
     property int tempo: 80
     property string tempoName: "Adagio"
@@ -40,7 +40,9 @@ Item {
 
     StackView {
         id: stackView
-        anchors.fill: parent
+        height: parent.height
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: itemModel.get(currentViewModelID).width
         initialItem: itemModel.get(currentViewModelID)
     }
 

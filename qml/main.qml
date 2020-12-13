@@ -10,17 +10,16 @@ import "./pages"
 
 ApplicationWindow {
     id: window
-    width: 700
-    height: 560
-    minimumWidth: metronomePage.width + drawerInteractArea.width
-    minimumHeight: metronomePage.height
+    width: 560
+    height: 700
+    minimumWidth: 560
+    minimumHeight: 700
     visible: true
     title: qsTr("FIT Metronome")
 
     MetronomePage {
         id: metronomePage
-        anchors.left: parent.left
-        anchors.bottom: parent.bottom
+        anchors.fill: parent
 
         Component.onCompleted: themeSelect.currentIndex = metronomePage.currentViewModelID
     }
