@@ -23,7 +23,7 @@
             <label for="donation">Ammount you wish to donate (Czk):</label>
             <input name="donation" type="number" placeholder="20">
 
-            <button id="submitBtn" type="submit" onclick="refreshData()">Donate!</button>
+            <button id="submitBtn" type="submit" onclick="loadData()">Donate!</button>
         </form>
     </div>
 
@@ -33,15 +33,21 @@
 </html>
 
 <script type="text/javascript">
+    var last_id = 0;
+
     function loadData() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200) {
                 var data = JSON.parse(xhttp.responseText);
+                const donations = data.donation
 
-                for(i = 0; i < data.length; i++) {
-                    const row = "<p><b>" + data[i].displayName + "</b> donated " + data[i].sum + "Czk! Thank you</p>";
-                    document.getElementById("donation-list").innerHTML += row;
+                for(i = 0; i < donations.length; i++) {
+                    if(last_id < donations[i].id) {
+                        last_id = donations[i].id;
+                        const row = "<p><b>" + donations[i].displayName + "</b> donated " + donations[i].sum + "Czk! Thank you!</p>";
+                        document.getElementById("donation-list").innerHTML += row;
+                    }
                 }
             }
         }
@@ -49,11 +55,6 @@
         xhttp.send();
     }
 
-    funtion refreshData() {
-        
-        
-        loadData();
-    }
-
     window.onload = loadData();
+    setInterval(loadData, 10000);
 </script>
