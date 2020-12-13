@@ -11,7 +11,7 @@ class webLauncher : public QObject {
 public:
     explicit webLauncher(QObject *parent = 0) : QObject(parent) {}
     Q_INVOKABLE void launch(void) {
-        QDesktopServices::openUrl(QUrl::fromLocalFile("misc/donatePage.html"));
+        QDesktopServices::openUrl(QUrl::fromLocalFile("http://20.67.100.205:8000/"));
     }
 };
 
