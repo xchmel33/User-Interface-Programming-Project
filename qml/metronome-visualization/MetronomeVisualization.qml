@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtMultimedia 5.12
+import Qt.labs.settings 1.0
 import TempoLUT 1.0
 
 Item {
@@ -75,7 +76,15 @@ Item {
         id: tempoLUT
     }
 
-    Component.onCompleted: syncSliders()
+    Settings {
+        property alias tempo: metronomeVisualization.tempo
+        property alias beatSound: metronomeVisualization.beatSound
+    }
+
+    Component.onCompleted: {
+        metronomeVisualization.tempoChange(metronomeVisualization.tempo);
+        metronomeVisualization.syncSliders()
+    }
 }
 /*##^##
 Designer {

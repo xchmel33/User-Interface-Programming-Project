@@ -11,11 +11,8 @@ Item {
     width: parent.width
     height: parent.height
 
-    property int tempo: 80
-    property string tempoName: "Adagio"
-    property string beatSound: "/sound/classic-click.wav"
+    property string beatSound: "/sounds/classic-click.wav"
     property string currentProfile: "Default"
-
     property int currentViewModelID: 0
 
     function setBeatSound(newBeatSound) {
@@ -27,7 +24,6 @@ Item {
         let currViewModel = stackView.currentItem
         if (newViewModel !== currViewModel) {
             stackView.replace(newViewModel)
-            newViewModel.syncSliders();
         }
         metronomePage.currentViewModelID = viewNo
     }
@@ -35,8 +31,12 @@ Item {
     ObjectModel {
         id: itemModel
 
-        MetronomeSimple { tempo: metronomePage.tempo; tempoName: metronomePage.tempoName; beatSound: metronomePage.beatSound }
-        MetronomeAnalogClassic { tempo: metronomePage.tempo; tempoName: metronomePage.tempoName; beatSound: metronomePage.beatSound }
+        MetronomeSimple {
+            beatSound: metronomePage.beatSound
+        }
+        MetronomeAnalogClassic {
+            beatSound: metronomePage.beatSound
+        }
     }
 
     StackView {
@@ -48,8 +48,6 @@ Item {
     }
 
     Settings {
-        property alias tempo: metronomePage.tempo
-        property alias tempoName: metronomePage.tempoName
         property alias beatSound: metronomePage.beatSound
         property alias currentViewModelID: metronomePage.currentViewModelID
     }
