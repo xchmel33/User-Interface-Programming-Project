@@ -15,7 +15,7 @@ Item {
     property string tempoName: "Adagio"
     property string beatSound: "/sound/classic-click.wav"
     property string currentProfile: "Default"
-
+    property int contentWidth: stackView.currentItem.width
     property int currentViewModelID: 0
 
     function setBeatSound(newBeatSound) {
